@@ -1,14 +1,77 @@
-* {font-family: sans-serif;}
-
+* {
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  background-color: #73b2b3;
+}
 table {
   border: 1px solid black;
+  border-radius: 20px;
+  max-width: 1000px;
+  border-collapse: collapse;
+  overflow: hidden;
+  margin-left: auto;
+margin-right: auto;
+}
+.table-container{
   width: 100%;
 }
-
 td {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
+  padding: 5px;
 }
+thead {
+  background-color: #bd61f9;
+  font-size: 2em;
+}
+tbody {
+  font-size: 1.2em;
+}
+.checkedstatus:nth-of-type(odd) {
+  background-color: #66d078;
+}
+.checkedstatus:nth-of-type(even) {
+  background-color: #4d9d5b;
+}
+.status:nth-of-type(odd) {
+  background-color: #b142a0;
+}
+.status:nth-of-type(even) {
+  background-color: #bd46ab;
+}
+td:last-child, td:nth-last-child(2) {
+  max-width:100%;
+  white-space:nowrap;
+  text-align: center;
+}
+.btn {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+	background-color:#768d87;
+  margin: 4px;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.btn:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+	background-color:#6c7c7c;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}
+input[type=checkbox] {
 
-.checked {
-  background-color: rgb(94, 185, 89);
-}
+      transform: scale(2);
+    }

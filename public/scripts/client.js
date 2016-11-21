@@ -17,9 +17,11 @@ $(document).ready(function() {
     deleteTask(deleteId);
   });
 
-  $('tbody').on('click', '.checkBox', function() {
+  $('tbody').on('click', 'input[type=checkbox]', function() {
     event.preventDefault();
-    var taskId = $(this).val();
+
+    var taskId =  $(this).parent().parent().attr('id');
+    console.log('taskid for flip: ', taskId);
     completeTask(taskId);
   });
 });
@@ -69,25 +71,32 @@ function deleteTask(taskId) {
 
 function appendTasks(tasks) {
   $("tbody").empty();
+  //reverse sort by task id
+  tasks.sort(function(a, b) {
+    return b.id - a.id;
+  });
+
+  var numChecked = 0;
+  for (var i = 0; i < tasks.length- numChecked; i++) {
+    if (tasks[i].completed === true) {
+      tasks[i].status = 'checked';
+      var temp = tasks.splice(i, 1);
+      tasks.push(temp[0]);
+      i--;
+      numChecked++;
+    } else {
+      tasks[i].status = '';
+    }
+  }
 
   for (var i = 0; i < tasks.length; i++) {
-
-    $el = $('tbody');
     var task = tasks[i];
-    //$el.data('id', task.id);
-    console.log('task to append: ', task);
-    var status = '';
-    if (task.completed === true) {
-      status = 'checked';
-
-    }
-    $el.append(
-      '<tr class="' + status +
-      '"><td>' + task.id + '</td>' +
+    $('tbody').append(
+      '<tr class="' + task.status +
+      'status" id="' + task.id + '"><td>' + task.id + '</td>' +
       '<td>' + task.task + '</td>' +
-      '<td><input class="checkBox" value="' + task.id +
-      '" type="checkbox" ' + status + '></td>' +
-      '<td><button class="task-delete" ">REMOVE</button></td></tr>'
+      '<td><input type="checkbox" ' + task.status + '></td>' +
+      '<td><button class="btn task-delete" ">REMOVE</button></td></tr>'
     );
   }
 }
