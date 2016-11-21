@@ -1,12 +1,15 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
+html {
+  min-width: 650px;
+}
 body {
   background-color: #e9c6a1;
 }
 .title {
   background-color: #73b2b3;
-  padding: 10px;
+  padding: 5px;
   margin: 15px;
   border-radius: 20px;
   text-align: center;
@@ -17,6 +20,7 @@ h1 {
 }
 textarea {
   font-size: 1.2em;
+  max-width: 99%;
 }
 form{
   float: left;
@@ -24,29 +28,29 @@ form{
   margin: 20px;
   background-color: #73b2b3;
   border-radius: 20px;
-    border: 4px solid black;
+  border: 4px solid black;
+  max-width: 30%;
 }
 #newTask {
   height: 4em;
   width: 12em;
 }
 table {
-  border-radius: 20px;
-  max-width: 1000px;
+  border-radius:16px;
   border-collapse: collapse;
   overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-
 }
-.table-container{
+.table-container {
   float: left;
+  max-width: 60%;
   border: 4px solid black;
   border-radius: 20px;
+  margin: 20px;
 }
 td {
-  /*border: 1px solid black;*/
   padding: 5px;
+  word-break:break-all;
+  min-width: 30px;
 }
 thead {
   background-color: #bd61f9;

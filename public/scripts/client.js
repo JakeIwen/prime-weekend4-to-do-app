@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
   getTasks();
+
   $('#task-submit').on('click', function() {
     event.preventDefault();
     var taskInfo = {};
     taskInfo.newTask = $('#newTask').val();
-    $('#newTask').empty();
+    $('#newTask').val('');
     submitTask(taskInfo);
     console.log('submit task: ', taskInfo.newTask);
   });
@@ -19,7 +20,6 @@ $(document).ready(function() {
 
   $('tbody').on('click', 'input[type=checkbox]', function() {
     event.preventDefault();
-
     var taskId =  $(this).parent().parent().attr('id');
     console.log('taskid for flip: ', taskId);
     completeTask(taskId);
@@ -40,7 +40,6 @@ function getTasks() {
 }
 
 function completeTask(taskId) {
-  console.log('taskID for flip', taskId);
   $.ajax({
     type: 'PUT',
     url: '/tasks/completed/' + taskId,
@@ -54,7 +53,7 @@ function completeTask(taskId) {
 }
 
 function deleteTask(taskId) {
-  console.log('taskID for delete', taskId);
+  //run ajax req if user confirms
   if (confirm("Are you sure you want to delete this task?") == true) {
     $.ajax({
       type: 'DELETE',
@@ -66,7 +65,7 @@ function deleteTask(taskId) {
         console.log('Database error');
       }
     });
-    }
+  }
 }
 
 function appendTasks(tasks) {
@@ -75,7 +74,7 @@ function appendTasks(tasks) {
   tasks.sort(function(a, b) {
     return b.id - a.id;
   });
-
+  //send completed tasks to bottom of list
   var numChecked = 0;
   for (var i = 0; i < tasks.length- numChecked; i++) {
     if (tasks[i].completed === true) {
@@ -96,7 +95,7 @@ function appendTasks(tasks) {
       'status" id="' + task.id + '"><td>' + task.id + '</td>' +
       '<td>' + task.task + '</td>' +
       '<td><input type="checkbox" ' + task.status + '></td>' +
-      '<td><button class="btn task-delete" ">REMOVE</button></td></tr>'
+      '<td><button class="btn task-delete">REMOVE</button></td></tr>'
     );
   }
 }
