@@ -12,10 +12,10 @@ app.use(bodyParser.json());
 app.use('/tasks', tasks);
 
 
-app.use(express.static('./public/scripts'));
-app.use(express.static('./public/vendor'));
-app.use(express.static('./public/styles'));
-    
+// app.use(express.static('./public/scripts'));
+// app.use(express.static('./public/vendor'));
+app.use(express.static('public'));
+
 
 
 app.listen(process.env.PORT || port);
