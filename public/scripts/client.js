@@ -53,17 +53,20 @@ function completeTask(taskId) {
 
 function deleteTask(taskId) {
   console.log('taskID for delete', taskId);
-  $.ajax({
-    type: 'DELETE',
-    url: '/tasks/delete/' + taskId,
-    success: function(task) {
-      getTasks();
-    },
-    error: function() {
-      console.log('Database error');
+  if (confirm("Are you sure you want to delete this task?") == true) {
+    $.ajax({
+      type: 'DELETE',
+      url: '/tasks/delete/' + taskId,
+      success: function(task) {
+        getTasks();
+      },
+      error: function() {
+        console.log('Database error');
+      }
+    });
     }
-  });
 }
+
 function appendTasks(tasks) {
   $("tbody").empty();
 
@@ -73,12 +76,13 @@ function appendTasks(tasks) {
     var task = tasks[i];
     //$el.data('id', task.id);
     console.log('task to append: ', task);
-    var status = 'Check In';
+    var status = '';
     if (task.completed === true) {
-      status = 'checked'
+      status = 'checked';
+
     }
     $el.append(
-      '<tr id="' + task.id +
+      '<tr class="' + status +
       '"><td>' + task.id + '</td>' +
       '<td>' + task.task + '</td>' +
       '<td><input class="checkBox" value="' + task.id +
@@ -101,5 +105,4 @@ function submitTask(newTask) {
       console.log('could not post a new owner');
     }
   });
-
 }

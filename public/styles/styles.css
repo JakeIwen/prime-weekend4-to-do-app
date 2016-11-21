@@ -8,3 +8,7 @@ table {
 td {
   border: 1px solid black;
 }
+
+.checked {
+  background-color: rgb(94, 185, 89);
+}
